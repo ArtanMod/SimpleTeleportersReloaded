@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import jp.artan.repack.registrate.util.nullness.NonNullSupplier;
 import jp.artan.teleporters.config.SimpleTeleportersReloadedConfig;
 import jp.artan.teleporters.data.SimpleTeleportersReloadedRegistrate;
+import jp.artan.teleporters.init.BlockEntityInit;
 import jp.artan.teleporters.init.BlockInit;
 import jp.artan.teleporters.init.ItemGroupInit;
 import jp.artan.teleporters.init.ItemInit;
@@ -29,10 +30,12 @@ public class SimpleTeleportersReloaded {
 
     public SimpleTeleportersReloaded() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        BlockEntityInit.BET.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerProviders);
 
+        BlockEntityInit.register();
         ItemGroupInit.register();
         ItemInit.register();
         BlockInit.register();
