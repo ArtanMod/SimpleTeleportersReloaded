@@ -1,4 +1,5 @@
 {
+  "block.teleporters.teleporter": "\u0279\u01DD\u0287\u0279od\u01DD\u05DF\u01DD\u27D8",
   "item.teleporters.ender_crystal": "\u05DF\u0250\u0287s\u028E\u0279\u0186 \u0279\u01DDpu\u018E",
   "itemGroup.simple_teleporters_reloaded": "p\u01DDp\u0250o\u05DF\u01DD\u1D1A :s\u0279\u01DD\u0287\u0279od\u01DD\u05DF\u01DD\u27D8\u01DD\u05DFd\u026F\u0131S",
   "teleporters.ender_crystal.click_event": "\u02D9%3$s '%2$s '%1$s :\u0287\u0250 p\u01DD\u029Eu\u0131\u05DF s\u0131 \u05DF\u0250\u0287s\u028E\u0279\u0254 s\u0131\u0265\u27D8",

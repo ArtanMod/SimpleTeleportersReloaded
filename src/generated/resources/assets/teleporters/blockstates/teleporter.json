@@ -1,0 +1,12 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "hatch": "0|1"
+      },
+      "apply": {
+        "model": "teleporters:block/teleporter"
+      }
+    }
+  ]
+}
