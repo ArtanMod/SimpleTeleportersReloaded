@@ -2,13 +2,16 @@ package jp.artan.teleporters;
 
 import com.mojang.logging.LogUtils;
 import jp.artan.repack.registrate.util.nullness.NonNullSupplier;
+import jp.artan.teleporters.config.SimpleTeleportersReloadedConfig;
 import jp.artan.teleporters.data.SimpleTeleportersReloadedRegistrate;
 import jp.artan.teleporters.init.BlockInit;
 import jp.artan.teleporters.init.ItemGroupInit;
 import jp.artan.teleporters.init.ItemInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
@@ -33,6 +36,9 @@ public class SimpleTeleportersReloaded {
         ItemGroupInit.register();
         ItemInit.register();
         BlockInit.register();
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SimpleTeleportersReloadedConfig.SPEC, "simple-teleporters-reloaded.toml");
+
     }
 
     public static ResourceLocation getResource(String name) {
