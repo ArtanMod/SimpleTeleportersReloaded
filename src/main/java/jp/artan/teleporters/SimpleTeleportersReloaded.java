@@ -3,6 +3,7 @@ package jp.artan.teleporters;
 import com.mojang.logging.LogUtils;
 import jp.artan.repack.registrate.util.nullness.NonNullSupplier;
 import jp.artan.teleporters.data.SimpleTeleportersReloadedRegistrate;
+import jp.artan.teleporters.init.ItemGroupInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -26,6 +27,8 @@ public class SimpleTeleportersReloaded {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerProviders);
+
+        ItemGroupInit.register();
     }
 
     public static ResourceLocation getResource(String name) {
