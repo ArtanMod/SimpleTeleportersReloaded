@@ -1,12 +1,10 @@
 {
-  "multipart": [
-    {
-      "when": {
-        "hatch": "0|1"
-      },
-      "apply": {
-        "model": "teleporters:block/teleporter"
-      }
+  "variants": {
+    "on=0": {
+      "model": "teleporters:block/teleporter"
+    },
+    "on=1": {
+      "model": "teleporters:block/teleporter"
     }
-  ]
+  }
 }

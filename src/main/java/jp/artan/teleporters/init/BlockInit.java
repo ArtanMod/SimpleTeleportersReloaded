@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.material.Material;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 
 public class BlockInit {
@@ -88,9 +89,8 @@ public class BlockInit {
                         .face(Direction.UP).texture("#portal").uvs(0.0F, 0.0F, 8.0F, 8.0F).end()
                         .face(Direction.DOWN).texture("#portal").uvs(0.0F, 0.0F, 8.0F, 8.0F).end()
                         .end();
-                provider.getMultipartBuilder(ctx.get())
-                        .part().modelFile(model).addModel()
-                        .condition(TeleporterBlock.ON, 0, 1);
+                provider.getVariantBuilder(ctx.get())
+                        .forAllStates(state -> ConfiguredModel.builder().modelFile(model).build());
                 provider.simpleBlockItem(ctx.get(), model);
             })
             .addLayer(() -> RenderType::cutout)
