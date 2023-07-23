@@ -4,7 +4,6 @@ import jp.artan.artansprojectcoremod.tabs.CreativeTab;
 import jp.artan.teleporters.SimpleTeleportersReloaded;
 import jp.artan.teleporters.data.SimpleTeleportersReloadedRegistrate;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 public class ItemGroupInit {
     private static final SimpleTeleportersReloadedRegistrate REGISTRATE = SimpleTeleportersReloaded.registrate();
