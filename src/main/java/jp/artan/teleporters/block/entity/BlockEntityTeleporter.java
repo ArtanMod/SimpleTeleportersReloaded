@@ -2,7 +2,6 @@ package jp.artan.teleporters.block.entity;
 
 import jp.artan.teleporters.init.BlockEntityInit;
 import jp.artan.teleporters.init.ItemInit;
-import jp.artan.teleporters.item.TeleportCrystal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -43,7 +42,6 @@ public class BlockEntityTeleporter extends BlockEntity implements Clearable {
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
-        this.items.clear();
         ContainerHelper.loadAllItems(pTag, this.items);
     }
 
