@@ -4,7 +4,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -23,18 +22,6 @@ import java.util.List;
 public class TeleportCrystal extends Item {
     public TeleportCrystal(Properties pProperties) {
         super(pProperties);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        CompoundTag tags = pStack.getTag();
-        if(tags == null) {
-            pTooltipComponents.add(new TranslatableComponent("teleporters.ender_crystal.tooltip.unlinked").withStyle(s -> s.withColor(ChatFormatting.RED)));
-            pTooltipComponents.add(new TranslatableComponent("teleporters.ender_crystal.tooltip.guid").withStyle(s -> s.withColor(ChatFormatting.BLUE)));
-        } else {
-            pTooltipComponents.add(new TranslatableComponent("teleporters.ender_crystal.tooltip.linked", tags.getInt("x"), tags.getInt("y"), tags.getInt("z")).withStyle(s -> s.withColor(ChatFormatting.GREEN)));
-
-        }
     }
 
     @Override
@@ -74,5 +61,17 @@ public class TeleportCrystal extends Item {
             }
         }
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        CompoundTag tags = pStack.getTag();
+        if(tags == null) {
+            pTooltipComponents.add(new TranslatableComponent("teleporters.ender_crystal.tooltip.unlinked").withStyle(s -> s.withColor(ChatFormatting.RED)));
+            pTooltipComponents.add(new TranslatableComponent("teleporters.ender_crystal.tooltip.guid").withStyle(s -> s.withColor(ChatFormatting.BLUE)));
+        } else {
+            pTooltipComponents.add(new TranslatableComponent("teleporters.ender_crystal.tooltip.linked", tags.getInt("x"), tags.getInt("y"), tags.getInt("z")).withStyle(s -> s.withColor(ChatFormatting.GREEN)));
+
+        }
     }
 }

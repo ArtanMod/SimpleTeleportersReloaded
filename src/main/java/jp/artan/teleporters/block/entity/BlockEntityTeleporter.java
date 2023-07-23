@@ -24,6 +24,27 @@ public class BlockEntityTeleporter extends BlockEntity implements Clearable {
         super(BlockEntityInit.ENTITY_TELEPORTER.get(), pPos, pBlockState);
     }
 
+    public static void teleport(Level pLevel, BlockPos pPos, BlockState pState, BlockEntityTeleporter pBlockEntity) {
+        if(pState.getValue(TeleporterBlock.ON) == 0) return;
+
+        List<ServerPlayer> players = ((ServerLevel) pLevel).players();
+        for(ServerPlayer player : players) {
+            if(!player.isShiftKeyDown()) continue;
+
+            ItemStack itemStack = pBlockEntity.getCrystal();
+            if(pBlockEntity != null && !itemStack.isEmpty() && equalBlockPos(player.m_142538_(), pPos)) {
+                CompoundTag tag = itemStack.getTag();
+                if(tag != null && tag.getString("dim").equals(pLevel.dimension().location().toString())) {
+                    player.teleportTo(tag.getInt("x") + 0.5F, tag.getInt("y") + 1, tag.getInt("z") + 0.5F);
+                }
+            }
+        }
+    }
+
+    private static boolean equalBlockPos(BlockPos pos1, BlockPos pos2) {
+        return pos1.getX() == pos2.getX() && pos1.getY() == pos2.getY() && pos1.getZ() == pos2.getZ();
+    }
+
     @Override
     public void clearContent() {
         this.items.clear();
@@ -55,27 +76,5 @@ public class BlockEntityTeleporter extends BlockEntity implements Clearable {
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
         ContainerHelper.saveAllItems(pTag, this.items, true);
-    }
-
-
-    public static void teleport(Level pLevel, BlockPos pPos, BlockState pState, BlockEntityTeleporter pBlockEntity) {
-        if(pState.getValue(TeleporterBlock.ON) == 0) return;
-
-        List<ServerPlayer> players = ((ServerLevel)pLevel).players();
-        for(ServerPlayer player : players) {
-            if(!player.isShiftKeyDown()) continue;
-
-            ItemStack itemStack = pBlockEntity.getCrystal();
-            if(pBlockEntity != null && !itemStack.isEmpty() && equalBlockPos(player.m_142538_(), pPos)) {
-                CompoundTag tag = itemStack.getTag();
-                if(tag != null && tag.getString("dim").equals(pLevel.dimension().location().toString())) {
-                    player.teleportTo(tag.getInt("x") + 0.5F, tag.getInt("y") + 1, tag.getInt("z") + 0.5F);
-                }
-            }
-        }
-    }
-
-    private static boolean equalBlockPos(BlockPos pos1, BlockPos pos2) {
-        return pos1.getX() == pos2.getX() && pos1.getY() == pos2.getY() && pos1.getZ() == pos2.getZ();
     }
 }

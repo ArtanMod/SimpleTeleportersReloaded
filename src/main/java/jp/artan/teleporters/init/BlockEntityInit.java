@@ -10,10 +10,10 @@ import net.minecraftforge.registries.RegistryObject;
 public class BlockEntityInit {
     public static final DeferredRegister<BlockEntityType<?>> BET = DeferredRegister.create(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES, SimpleTeleportersReloaded.MOD_ID);
 
-    public static final RegistryObject<BlockEntityType<BlockEntityTeleporter>> ENTITY_TELEPORTER = BET.register("teleporter",
-            () -> BlockEntityType.Builder.of(BlockEntityTeleporter::new, BlockInit.ENDER_CRYSTAL.get()).build(null));
-
     public static void register() {
 
-    }
+    }    public static final RegistryObject<BlockEntityType<BlockEntityTeleporter>> ENTITY_TELEPORTER = BET.register("teleporter",
+            () -> BlockEntityType.Builder.of(BlockEntityTeleporter::new, BlockInit.ENDER_CRYSTAL.get()).build(null));
+
+
 }

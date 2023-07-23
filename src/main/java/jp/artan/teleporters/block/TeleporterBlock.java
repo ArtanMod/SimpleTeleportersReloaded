@@ -27,12 +27,24 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class TeleporterBlock extends BaseEntityBlock {
-    protected static final VoxelShape SHAPE = Block.box(0D, 0.0D, 0D, 16D, 5D, 16D);
     public static final IntegerProperty ON = IntegerProperty.create("on", 0, 1);
+    protected static final VoxelShape SHAPE = Block.box(0D, 0.0D, 0D, 16D, 5D, 16D);
 
     public TeleporterBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(ON, 0));
+    }
+
+    @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if(!pState.is(pNewState.getBlock())) {
+            BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+            if(blockentity instanceof BlockEntityTeleporter tile) {
+                Containers.dropContents(pLevel, pPos, tile.getItems());
+            }
+
+            super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+        }
     }
 
     @Override
@@ -62,15 +74,8 @@ public class TeleporterBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (!pState.is(pNewState.getBlock())) {
-            BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-            if (blockentity instanceof BlockEntityTeleporter tile) {
-                Containers.dropContents(pLevel, pPos, tile.getItems());
-            }
-
-            super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-        }
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return SHAPE;
     }
 
     @Override
@@ -78,20 +83,10 @@ public class TeleporterBlock extends BaseEntityBlock {
         pBuilder.add(ON);
     }
 
-    @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SHAPE;
-    }
-
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new BlockEntityTeleporter(pPos, pState);
-    }
-
-    @Override
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
     }
 
     @Nullable
@@ -101,5 +96,10 @@ public class TeleporterBlock extends BaseEntityBlock {
             return null;
         }
         return createTickerHelper(pBlockEntityType, BlockEntityInit.ENTITY_TELEPORTER.get(), BlockEntityTeleporter::teleport);
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
     }
 }

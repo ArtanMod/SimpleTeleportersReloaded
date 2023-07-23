@@ -25,9 +25,9 @@ public class TeleporterRenderer implements BlockEntityRenderer<BlockEntityTelepo
             Random rand = Minecraft.getInstance().level.random;
             for(int i = 0; i < SimpleTeleportersReloadedConfig.CONFIG_PARTICLE_AMT_BLOCK.get(); i++) {
                 Minecraft.getInstance().level.addParticle(ParticleTypes.PORTAL,
-                        pos.getX() + 0.2F + (rand.nextFloat()/2),
+                        pos.getX() + 0.2F + (rand.nextFloat() / 2),
                         pos.getY() + 0.4F,
-                        pos.getZ() + 0.2F + (rand.nextFloat()/2),
+                        pos.getZ() + 0.2F + (rand.nextFloat() / 2),
                         0, rand.nextFloat(), 0);
             }
         }
