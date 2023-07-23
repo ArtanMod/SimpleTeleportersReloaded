@@ -1,6 +1,7 @@
 package jp.artan.teleporters.block;
 
 import jp.artan.teleporters.block.entity.BlockEntityTeleporter;
+import jp.artan.teleporters.init.BlockEntityInit;
 import jp.artan.teleporters.item.TeleportCrystal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -15,6 +16,8 @@ import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -89,5 +92,14 @@ public class TeleporterBlock extends BaseEntityBlock {
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        if(pLevel.isClientSide) {
+            return null;
+        }
+        return createTickerHelper(pBlockEntityType, BlockEntityInit.ENTITY_TELEPORTER.get(), BlockEntityTeleporter::teleport);
     }
 }
