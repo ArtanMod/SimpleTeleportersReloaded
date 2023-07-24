@@ -65,7 +65,9 @@ public class TeleporterBlock extends BaseEntityBlock {
                 if(stack.getItem() instanceof TeleportCrystal && stack.getTag() != null) {
                     pPlayer.playSound(SoundEvents.ARROW_SHOOT, 0.5F, 0.4F / (pLevel.random.nextFloat() * 0.4F + 0.8F));
                     pLevel.setBlock(pPos, pState.setValue(ON, 1), 2);
-                    tile.setCrystal(stack.copy());
+                    ItemStack copyItemStack = stack.copy();
+                    copyItemStack.setCount(1);
+                    tile.setCrystal(copyItemStack);
                     stack.shrink(1);
                     return InteractionResult.SUCCESS;
                 }
