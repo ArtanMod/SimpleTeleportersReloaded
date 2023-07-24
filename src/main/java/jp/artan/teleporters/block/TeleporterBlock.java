@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -50,10 +51,10 @@ public class TeleporterBlock extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-        if(blockentity instanceof BlockEntityTeleporter tile) {
+        if(blockentity instanceof BlockEntityTeleporter tile && pHand == InteractionHand.MAIN_HAND) {
             ItemStack stack = pPlayer.getItemInHand(pHand);
             if(tile.hasCrystal()) {
-                if(pHand == InteractionHand.MAIN_HAND) {
+                if(stack.getItem() == Items.AIR) {
                     pPlayer.setItemInHand(pHand, tile.getCrystal().copy());
                     pPlayer.playSound(SoundEvents.ARROW_SHOOT, 0.5F, 0.4F / (pLevel.random.nextFloat() * 0.4F + 0.8F));
                     pLevel.setBlock(pPos, pState.setValue(ON, 0), 2);
@@ -61,7 +62,7 @@ public class TeleporterBlock extends BaseEntityBlock {
                     return InteractionResult.SUCCESS;
                 }
             } else {
-                if(pHand == InteractionHand.MAIN_HAND && stack.getItem() instanceof TeleportCrystal && stack.getTag() != null) {
+                if(stack.getItem() instanceof TeleportCrystal && stack.getTag() != null) {
                     pPlayer.playSound(SoundEvents.ARROW_SHOOT, 0.5F, 0.4F / (pLevel.random.nextFloat() * 0.4F + 0.8F));
                     pLevel.setBlock(pPos, pState.setValue(ON, 1), 2);
                     tile.setCrystal(stack.copy());
