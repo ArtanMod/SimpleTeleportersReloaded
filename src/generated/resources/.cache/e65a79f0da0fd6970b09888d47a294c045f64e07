@@ -1,4 +1,4 @@
-// 1.19.2	2023-07-25T21:25:28.4118732	Registrate Provider for teleporters [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud), Languages: ja_jp]
+// 1.19.2	2023-07-25T23:53:57.9747488	Registrate Provider for teleporters [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud), Languages: ja_jp]
 a2353f6e7d2b3895ade3b93047110bc9faabafa5 assets/teleporters/blockstates/teleporter.json
 5bdee5ce2f53c83df6042d61221b2446e6c49512 assets/teleporters/lang/en_ud.json
 0cfe22009352ab1959af094f64d592555e70599b assets/teleporters/lang/en_us.json
@@ -6,4 +6,8 @@ a2353f6e7d2b3895ade3b93047110bc9faabafa5 assets/teleporters/blockstates/teleport
 ba7641429fe174946e852b77f9e504a4392bffda assets/teleporters/models/block/teleporter.json
 07a04a29ffd3f9e6cbf6626e32506111fa8729b9 assets/teleporters/models/item/ender_crystal.json
 9045e294956890c91a903b4dc09c1c4b23d478ca assets/teleporters/models/item/teleporter.json
+ca3f21e6876a2a260d20c0050b3a1bcbb1fe1bd4 data/teleporters/advancements/recipes/simple_teleporters_reloaded/ender_crystal.json
+67c6d16f02f800b87f051cddc3ab7e62751c57f2 data/teleporters/advancements/recipes/simple_teleporters_reloaded/teleporter.json
 a95ec3dbd5ba50cc0df7561fde620dbb9eec78d6 data/teleporters/loot_tables/blocks/teleporter.json
+9245982aeda92e741bf7087d4185e9fee4784e2c data/teleporters/recipes/ender_crystal.json
+c48fd625fa57342a57ac1f6001eebfbcfb61e604 data/teleporters/recipes/teleporter.json
