@@ -32,7 +32,7 @@ public class BlockEntityTeleporter extends BlockEntity implements Clearable {
             if(!player.isShiftKeyDown()) continue;
 
             ItemStack itemStack = pBlockEntity.getCrystal();
-            if(pBlockEntity != null && !itemStack.isEmpty() && equalBlockPos(player.m_142538_(), pPos)) {
+            if(pBlockEntity != null && !itemStack.isEmpty() && equalBlockPos(player.getOnPos(), pPos)) {
                 CompoundTag tag = itemStack.getTag();
                 if(tag != null && tag.getString("dim").equals(pLevel.dimension().location().toString())) {
                     player.teleportTo(tag.getInt("x") + 0.5F, tag.getInt("y") + 1, tag.getInt("z") + 0.5F);
