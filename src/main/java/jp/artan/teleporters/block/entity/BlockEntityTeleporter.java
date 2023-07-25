@@ -1,6 +1,7 @@
 package jp.artan.teleporters.block.entity;
 
 import jp.artan.teleporters.block.TeleporterBlock;
+import jp.artan.teleporters.config.SimpleTeleportersReloadedConfig;
 import jp.artan.teleporters.init.BlockEntityInit;
 import jp.artan.teleporters.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -28,7 +29,8 @@ public class BlockEntityTeleporter extends BlockEntity implements Clearable {
     public static void teleport(Level pLevel, BlockPos pPos, BlockState pState, BlockEntityTeleporter pBlockEntity) {
         if(pState.getValue(TeleporterBlock.ON) == 0) return;
 
-        List<ServerPlayer> players = ((ServerLevel) pLevel).players();
+        ServerLevel serverLevel = (ServerLevel) pLevel;
+        List<ServerPlayer> players = serverLevel.players();
         for(ServerPlayer player : players) {
             if(!player.isShiftKeyDown()) continue;
 
@@ -36,7 +38,11 @@ public class BlockEntityTeleporter extends BlockEntity implements Clearable {
             if(pBlockEntity != null && !itemStack.isEmpty() && equalBlockPos(player.getOnPos(), pPos)) {
                 CompoundTag tag = itemStack.getTag();
                 if(tag != null && tag.getString("dim").equals(pLevel.dimension().location().toString())) {
-                    player.teleportTo(tag.getInt("x") + 0.5F, tag.getInt("y") + 1, tag.getInt("z") + 0.5F);
+                    float pYaw = player.getRotationVector().y;
+                    if(SimpleTeleportersReloadedConfig.CONFIG_USE_DIRECTION.get()) {
+                        pYaw = tag.getFloat("direction");
+                    }
+                    player.teleportTo(serverLevel, tag.getInt("x") + 0.5F, tag.getInt("y") + 1, tag.getInt("z") + 0.5F, pYaw, player.getVoicePitch());
                     player.playNotifySound(SoundEvents.ENDERMAN_TELEPORT, player.getSoundSource(), 1, 1);
                 }
             }
