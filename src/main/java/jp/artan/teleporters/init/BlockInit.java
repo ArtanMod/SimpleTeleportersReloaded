@@ -1,5 +1,6 @@
 package jp.artan.teleporters.init;
 
+import jp.artan.repack.registrate.providers.RegistrateRecipeProvider;
 import jp.artan.repack.registrate.util.entry.BlockEntry;
 import jp.artan.teleporters.SimpleTeleportersReloaded;
 import jp.artan.teleporters.block.TeleporterBlock;
@@ -7,6 +8,8 @@ import jp.artan.teleporters.data.SimpleTeleportersReloadedRegistrate;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.Direction;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -17,6 +20,17 @@ public class BlockInit {
     public static final BlockEntry<TeleporterBlock> ENDER_CRYSTAL = REGISTRATE.block("teleporter", TeleporterBlock::new)
             .initialProperties(Material.STONE)
             .properties(p -> p.lightLevel((bs) -> 1).explosionResistance(1).randomTicks())
+            .recipe((ctx, prov) -> {
+                ShapedRecipeBuilder.shaped(ctx.get())
+                        .define('X', Blocks.GOLD_BLOCK)
+                        .define('Y', ItemInit.ENDER_CRYSTAL.get())
+                        .define('Z', Blocks.QUARTZ_BLOCK)
+                        .pattern(" X ")
+                        .pattern("YZY")
+                        .pattern("ZZZ")
+                        .unlockedBy("has_item", RegistrateRecipeProvider.has(ItemInit.ENDER_CRYSTAL.get()))
+                        .save(prov);
+            })
             .simpleItem()
             .blockstate((ctx, provider) -> {
                 ModelFile model = provider.models().getBuilder("teleporter")
