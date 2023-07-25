@@ -8,6 +8,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Clearable;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.ItemStack;
@@ -36,6 +37,7 @@ public class BlockEntityTeleporter extends BlockEntity implements Clearable {
                 CompoundTag tag = itemStack.getTag();
                 if(tag != null && tag.getString("dim").equals(pLevel.dimension().location().toString())) {
                     player.teleportTo(tag.getInt("x") + 0.5F, tag.getInt("y") + 1, tag.getInt("z") + 0.5F);
+                    player.playNotifySound(SoundEvents.ENDERMAN_TELEPORT, player.getSoundSource(), 1, 1);
                 }
             }
         }
