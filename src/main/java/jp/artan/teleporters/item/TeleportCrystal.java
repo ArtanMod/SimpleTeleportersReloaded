@@ -4,7 +4,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -47,7 +46,7 @@ public class TeleportCrystal extends Item {
             tags.putFloat("direction", player.getRotationVector().y);
 
             if(!level.isClientSide) {
-                player.displayClientMessage(new TranslatableComponent("teleporters.ender_crystal.click_event", tags.getInt("x"), tags.getInt("y"), tags.getInt("z")).withStyle(s -> s.withColor(ChatFormatting.GREEN)), true);
+                player.displayClientMessage(Component.translatable("teleporters.ender_crystal.click_event", tags.getInt("x"), tags.getInt("y"), tags.getInt("z")).withStyle(s -> s.withColor(ChatFormatting.GREEN)), true);
             }
             player.playSound(SoundEvents.ENDERMAN_TELEPORT, 1, 1);
             return InteractionResult.SUCCESS;
@@ -55,9 +54,9 @@ public class TeleportCrystal extends Item {
             ItemStack itemstack = player.getItemInHand(hand);
             CompoundTag tags = itemstack.getTag();
             if(tags == null) {
-                player.displayClientMessage(new TranslatableComponent("teleporters.ender_crystal.unlinked").withStyle(s -> s.withColor(ChatFormatting.RED)), true);
+                player.displayClientMessage(Component.translatable("teleporters.ender_crystal.unlinked").withStyle(s -> s.withColor(ChatFormatting.RED)), true);
             } else {
-                player.displayClientMessage(new TranslatableComponent("teleporters.ender_crystal.click_event", tags.getInt("x"), tags.getInt("y"), tags.getInt("z")).withStyle(s -> s.withColor(ChatFormatting.GREEN)), true);
+                player.displayClientMessage(Component.translatable("teleporters.ender_crystal.click_event", tags.getInt("x"), tags.getInt("y"), tags.getInt("z")).withStyle(s -> s.withColor(ChatFormatting.GREEN)), true);
             }
         }
         return InteractionResult.PASS;
@@ -67,10 +66,10 @@ public class TeleportCrystal extends Item {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         CompoundTag tags = pStack.getTag();
         if(tags == null) {
-            pTooltipComponents.add(new TranslatableComponent("teleporters.ender_crystal.tooltip.unlinked").withStyle(s -> s.withColor(ChatFormatting.RED)));
-            pTooltipComponents.add(new TranslatableComponent("teleporters.ender_crystal.tooltip.guid").withStyle(s -> s.withColor(ChatFormatting.BLUE)));
+            pTooltipComponents.add(Component.translatable("teleporters.ender_crystal.tooltip.unlinked").withStyle(s -> s.withColor(ChatFormatting.RED)));
+            pTooltipComponents.add(Component.translatable("teleporters.ender_crystal.tooltip.guid").withStyle(s -> s.withColor(ChatFormatting.BLUE)));
         } else {
-            pTooltipComponents.add(new TranslatableComponent("teleporters.ender_crystal.tooltip.linked", tags.getInt("x"), tags.getInt("y"), tags.getInt("z")).withStyle(s -> s.withColor(ChatFormatting.GREEN)));
+            pTooltipComponents.add(Component.translatable("teleporters.ender_crystal.tooltip.linked", tags.getInt("x"), tags.getInt("y"), tags.getInt("z")).withStyle(s -> s.withColor(ChatFormatting.GREEN)));
 
         }
     }

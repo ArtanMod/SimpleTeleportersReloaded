@@ -20,6 +20,7 @@ public class BlockInit {
             .simpleItem()
             .blockstate((ctx, provider) -> {
                 ModelFile model = provider.models().getBuilder("teleporter")
+                        .renderType("cutout")
                         .transforms()
                         .transform(ItemTransforms.TransformType.GUI).rotation(30, 45, 0).translation(0, 0, 0).scale(0.625F, 0.625F, 0.625F).end()
                         .transform(ItemTransforms.TransformType.GROUND).rotation(0, 0, 0).translation(0, 3, 0).scale(0.25F, 0.25F, 0.25F).end()
@@ -93,7 +94,6 @@ public class BlockInit {
                         .forAllStates(state -> ConfiguredModel.builder().modelFile(model).build());
                 provider.simpleBlockItem(ctx.get(), model);
             })
-            .addLayer(() -> RenderType::cutout)
             .lang("Teleporter")
             .jpLang("テレポーター")
             .register();

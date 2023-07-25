@@ -10,8 +10,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-
-import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class TeleporterRenderer implements BlockEntityRenderer<BlockEntityTeleporter> {
     public TeleporterRenderer(BlockEntityRendererProvider.Context pContext) {
@@ -22,7 +21,7 @@ public class TeleporterRenderer implements BlockEntityRenderer<BlockEntityTelepo
         Integer p = pBlockEntity.getBlockState().getValue(TeleporterBlock.ON);
         if(p == 1) {
             BlockPos pos = pBlockEntity.getBlockPos();
-            Random rand = Minecraft.getInstance().level.random;
+            RandomSource rand = Minecraft.getInstance().level.random;
             for(int i = 0; i < SimpleTeleportersReloadedConfig.CONFIG_PARTICLE_AMT_BLOCK.get(); i++) {
                 Minecraft.getInstance().level.addParticle(ParticleTypes.PORTAL,
                         pos.getX() + 0.2F + (rand.nextFloat() / 2),

@@ -1,34 +1,15 @@
 {
   "display": {
-    "gui": {
+    "firstperson_righthand": {
       "rotation": [
-        30,
-        45,
+        0,
+        315,
         0
       ],
       "scale": [
-        0.625,
-        0.625,
-        0.625
-      ]
-    },
-    "ground": {
-      "translation": [
-        0,
-        3,
-        0
-      ],
-      "scale": [
-        0.25,
-        0.25,
-        0.25
-      ]
-    },
-    "head": {
-      "rotation": [
-        0,
-        180,
-        0
+        0.4,
+        0.4,
+        0.4
       ]
     },
     "fixed": {
@@ -43,61 +24,69 @@
         0.5
       ]
     },
+    "ground": {
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ],
+      "translation": [
+        0,
+        3,
+        0
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        45,
+        0
+      ],
+      "scale": [
+        0.625,
+        0.625,
+        0.625
+      ]
+    },
+    "head": {
+      "rotation": [
+        0,
+        180,
+        0
+      ]
+    },
     "thirdperson_righthand": {
       "rotation": [
         75,
         315,
         0
       ],
-      "translation": [
-        0,
-        2.5,
-        0
-      ],
       "scale": [
         0.375,
         0.375,
         0.375
-      ]
-    },
-    "firstperson_righthand": {
-      "rotation": [
-        0,
-        315,
-        0
       ],
-      "scale": [
-        0.4,
-        0.4,
-        0.4
+      "translation": [
+        0,
+        2.5,
+        0
       ]
     }
   },
-  "textures": {
-    "particle": "minecraft:block/nether_portal",
-    "top": "minecraft:block/quartz_block_top",
-    "line": "minecraft:block/quartz_pillar_top",
-    "gold": "minecraft:block/gold_block",
-    "portal": "minecraft:block/nether_portal"
-  },
   "elements": [
     {
-      "from": [
-        0,
-        0,
-        0
-      ],
-      "to": [
-        16,
-        3,
-        16
-      ],
       "faces": {
         "down": {
           "texture": "#top"
         },
-        "up": {
-          "texture": "#line"
+        "east": {
+          "texture": "#top",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            3.0
+          ]
         },
         "north": {
           "texture": "#top",
@@ -117,6 +106,9 @@
             2.0
           ]
         },
+        "up": {
+          "texture": "#line"
+        },
         "west": {
           "texture": "#top",
           "uv": [
@@ -125,29 +117,20 @@
             16.0,
             3.0
           ]
-        },
-        "east": {
-          "texture": "#top",
-          "uv": [
-            0.0,
-            0.0,
-            16.0,
-            3.0
-          ]
         }
-      }
-    },
-    {
+      },
       "from": [
-        1,
-        3,
-        1
+        0,
+        0,
+        0
       ],
       "to": [
-        15,
-        6,
-        15
-      ],
+        16,
+        3,
+        16
+      ]
+    },
+    {
       "faces": {
         "down": {
           "texture": "#top",
@@ -158,27 +141,36 @@
             14.0
           ]
         },
+        "east": {
+          "texture": "#top",
+          "uv": [
+            0.0,
+            0.0,
+            14.0,
+            3.0
+          ]
+        },
+        "north": {
+          "texture": "#top",
+          "uv": [
+            0.0,
+            0.0,
+            14.0,
+            3.0
+          ]
+        },
+        "south": {
+          "texture": "#top",
+          "uv": [
+            0.0,
+            0.0,
+            14.0,
+            2.0
+          ]
+        },
         "up": {
           "texture": "#line"
         },
-        "north": {
-          "texture": "#top",
-          "uv": [
-            0.0,
-            0.0,
-            14.0,
-            3.0
-          ]
-        },
-        "south": {
-          "texture": "#top",
-          "uv": [
-            0.0,
-            0.0,
-            14.0,
-            2.0
-          ]
-        },
         "west": {
           "texture": "#top",
           "uv": [
@@ -187,31 +179,49 @@
             14.0,
             3.0
           ]
-        },
-        "east": {
-          "texture": "#top",
+        }
+      },
+      "from": [
+        1,
+        3,
+        1
+      ],
+      "to": [
+        15,
+        6,
+        15
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "#gold",
           "uv": [
             0.0,
             0.0,
-            14.0,
-            3.0
+            2.0,
+            2.0
           ]
-        }
-      }
-    },
-    {
-      "from": [
-        0,
-        3,
-        0
-      ],
-      "to": [
-        2,
-        5,
-        2
-      ],
-      "faces": {
-        "down": {
+        },
+        "east": {
+          "texture": "#gold",
+          "uv": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ]
+        },
+        "north": {
+          "texture": "#gold",
+          "uv": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ]
+        },
+        "south": {
           "texture": "#gold",
           "uv": [
             0.0,
@@ -223,6 +233,47 @@
         "up": {
           "texture": "#gold"
         },
+        "west": {
+          "texture": "#gold",
+          "uv": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ]
+        }
+      },
+      "from": [
+        0,
+        3,
+        0
+      ],
+      "to": [
+        2,
+        5,
+        2
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "#gold",
+          "uv": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ]
+        },
+        "east": {
+          "texture": "#gold",
+          "uv": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ]
+        },
         "north": {
           "texture": "#gold",
           "uv": [
@@ -241,7 +292,7 @@
             2.0
           ]
         },
-        "west": {
+        "up": {
           "texture": "#gold",
           "uv": [
             0.0,
@@ -250,7 +301,7 @@
             2.0
           ]
         },
-        "east": {
+        "west": {
           "texture": "#gold",
           "uv": [
             0.0,
@@ -259,9 +310,7 @@
             2.0
           ]
         }
-      }
-    },
-    {
+      },
       "from": [
         14,
         3,
@@ -271,7 +320,9 @@
         16,
         5,
         2
-      ],
+      ]
+    },
+    {
       "faces": {
         "down": {
           "texture": "#gold",
@@ -282,7 +333,7 @@
             2.0
           ]
         },
-        "up": {
+        "east": {
           "texture": "#gold",
           "uv": [
             0.0,
@@ -309,7 +360,7 @@
             2.0
           ]
         },
-        "west": {
+        "up": {
           "texture": "#gold",
           "uv": [
             0.0,
@@ -318,7 +369,7 @@
             2.0
           ]
         },
-        "east": {
+        "west": {
           "texture": "#gold",
           "uv": [
             0.0,
@@ -327,9 +378,7 @@
             2.0
           ]
         }
-      }
-    },
-    {
+      },
       "from": [
         14,
         3,
@@ -339,18 +388,14 @@
         16,
         5,
         16
-      ],
+      ]
+    },
+    {
       "faces": {
         "down": {
-          "texture": "#gold",
-          "uv": [
-            0.0,
-            0.0,
-            2.0,
-            2.0
-          ]
+          "texture": "#gold"
         },
-        "up": {
+        "east": {
           "texture": "#gold",
           "uv": [
             0.0,
@@ -377,7 +422,7 @@
             2.0
           ]
         },
-        "west": {
+        "up": {
           "texture": "#gold",
           "uv": [
             0.0,
@@ -386,7 +431,7 @@
             2.0
           ]
         },
-        "east": {
+        "west": {
           "texture": "#gold",
           "uv": [
             0.0,
@@ -395,9 +440,7 @@
             2.0
           ]
         }
-      }
-    },
-    {
+      },
       "from": [
         0,
         3,
@@ -407,59 +450,65 @@
         2,
         5,
         16
-      ],
+      ]
+    },
+    {
       "faces": {
         "down": {
-          "texture": "#gold"
-        },
-        "up": {
-          "texture": "#gold",
+          "texture": "#portal",
           "uv": [
             0.0,
             0.0,
-            2.0,
-            2.0
-          ]
-        },
-        "north": {
-          "texture": "#gold",
-          "uv": [
-            0.0,
-            0.0,
-            2.0,
-            2.0
-          ]
-        },
-        "south": {
-          "texture": "#gold",
-          "uv": [
-            0.0,
-            0.0,
-            2.0,
-            2.0
-          ]
-        },
-        "west": {
-          "texture": "#gold",
-          "uv": [
-            0.0,
-            0.0,
-            2.0,
-            2.0
+            8.0,
+            8.0
           ]
         },
         "east": {
-          "texture": "#gold",
+          "texture": "#portal",
           "uv": [
             0.0,
             0.0,
-            2.0,
-            2.0
+            8.0,
+            0.2
+          ]
+        },
+        "north": {
+          "texture": "#portal",
+          "uv": [
+            0.0,
+            0.0,
+            8.0,
+            0.2
+          ]
+        },
+        "south": {
+          "texture": "#portal",
+          "uv": [
+            0.0,
+            0.0,
+            8.0,
+            0.2
+          ]
+        },
+        "up": {
+          "texture": "#portal",
+          "uv": [
+            0.0,
+            0.0,
+            8.0,
+            8.0
+          ]
+        },
+        "west": {
+          "texture": "#portal",
+          "uv": [
+            0.0,
+            0.0,
+            8.0,
+            0.2
           ]
         }
-      }
-    },
-    {
+      },
       "from": [
         4,
         6,
@@ -469,63 +518,15 @@
         12,
         6.2,
         12
-      ],
-      "faces": {
-        "down": {
-          "texture": "#portal",
-          "uv": [
-            0.0,
-            0.0,
-            8.0,
-            8.0
-          ]
-        },
-        "up": {
-          "texture": "#portal",
-          "uv": [
-            0.0,
-            0.0,
-            8.0,
-            8.0
-          ]
-        },
-        "north": {
-          "texture": "#portal",
-          "uv": [
-            0.0,
-            0.0,
-            8.0,
-            0.2
-          ]
-        },
-        "south": {
-          "texture": "#portal",
-          "uv": [
-            0.0,
-            0.0,
-            8.0,
-            0.2
-          ]
-        },
-        "west": {
-          "texture": "#portal",
-          "uv": [
-            0.0,
-            0.0,
-            8.0,
-            0.2
-          ]
-        },
-        "east": {
-          "texture": "#portal",
-          "uv": [
-            0.0,
-            0.0,
-            8.0,
-            0.2
-          ]
-        }
-      }
+      ]
     }
-  ]
+  ],
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "gold": "minecraft:block/gold_block",
+    "line": "minecraft:block/quartz_pillar_top",
+    "particle": "minecraft:block/nether_portal",
+    "portal": "minecraft:block/nether_portal",
+    "top": "minecraft:block/quartz_block_top"
+  }
 }
