@@ -1,9 +1,14 @@
 # Simple Teleporters
 
-Simple Teleporters adds a craftable teleporter block to quickly travel your world!
 **SimpleTeleportersReloaded** is a mod to salvage Simple Teleporters to 1.18.2 since development stopped at 1.14.1.
+There is only one change from the original mod.
+It only does not support the ability to change the difficulty of a recipe using configs. All other features are supported.
 
-## How to use this mod
+## Original mod description
+
+Simple Teleporters adds a craftable teleporter block to quickly travel your world!
+
+### How to use this mod
 
 To begin, you will need to craft an "Ender Shard" by heating up an Ender eye in a furnace
 
@@ -20,10 +25,10 @@ Place this Teleporter on the ground and use the Ender Crystal you made earlier i
 
 Now you have a working teleporter! You can now step on it and sneak to be teleported to the position you linked the crystal to.
 
-## Media
+### Media
 ![](./img/img3.png)
 
-## FAQ
+### FAQ
 
 Q) What is this black smoke?
 
@@ -41,3 +46,11 @@ A) No, the only place to download this mod is this Curse page
 Q) Can I make a video about this mod or with this mod in it?
 
 A) Yes, you don't need to ask.
+
+## Reference Mods
+
+- [Simple Teleporters](https://www.curseforge.com/minecraft/mc-mods/simple-teleporters), by [Lemonszz](https://legacy.curseforge.com/members/Lemonszz/projects)
+
+## License
+
+This Mod is subject to the MIT License. See LICENSE.md for details.
