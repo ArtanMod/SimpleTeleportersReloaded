@@ -1,19 +1,19 @@
 package jp.artan.teleporters.init;
 
-import jp.artan.artansprojectcoremod.gen.RecipeGen;
+import jp.artan.artansprojectcoremod.utils.RecipeGenUtils;
 import jp.artan.repack.registrate.util.entry.ItemEntry;
 import jp.artan.teleporters.SimpleTeleportersReloaded;
 import jp.artan.teleporters.data.SimpleTeleportersReloadedRegistrate;
 import jp.artan.teleporters.item.TeleportCrystal;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.world.item.Items;
 
 public class ItemInit {
-    private static final SimpleTeleportersReloadedRegistrate REGISTRATE = SimpleTeleportersReloaded.registrate().creativeModeTab(() -> ItemGroupInit.DEEP_MOB_LEARNING_RELOADED);
+    private static final SimpleTeleportersReloadedRegistrate REGISTRATE = SimpleTeleportersReloaded.registrate().useCreativeTab(ItemGroupInit.DEEP_MOB_LEARNING_RELOADED);
 
     public static final ItemEntry<TeleportCrystal> ENDER_CRYSTAL = REGISTRATE.item("ender_crystal", TeleportCrystal::new)
             .recipe((ctx, prov) -> {
-                RecipeGen.Cooking.smelting(() -> Items.ENDER_EYE, ctx::get).save(prov);
+                RecipeGenUtils.Cooking.smelting(RecipeCategory.MISC, () -> Items.ENDER_EYE, ctx::get).save(prov);
             })
             .lang("Ender Crystal")
             .jpLang("エンダークリスタル")

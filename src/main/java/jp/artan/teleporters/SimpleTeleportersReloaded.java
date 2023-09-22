@@ -31,6 +31,7 @@ public class SimpleTeleportersReloaded {
     public SimpleTeleportersReloaded() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         BlockEntityInit.BET.register(modEventBus);
+        ItemGroupInit.TAB_REGISTER.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerProviders);

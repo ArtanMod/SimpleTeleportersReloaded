@@ -1,5 +1,6 @@
 package jp.artan.teleporters.init;
 
+import jp.artan.artansprojectcoremod.utils.SharedProperties;
 import jp.artan.repack.registrate.providers.RegistrateRecipeProvider;
 import jp.artan.repack.registrate.util.entry.BlockEntry;
 import jp.artan.teleporters.SimpleTeleportersReloaded;
@@ -8,20 +9,21 @@ import jp.artan.teleporters.data.SimpleTeleportersReloadedRegistrate;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.Direction;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 
 public class BlockInit {
-    private static final SimpleTeleportersReloadedRegistrate REGISTRATE = SimpleTeleportersReloaded.registrate().creativeModeTab(() -> ItemGroupInit.DEEP_MOB_LEARNING_RELOADED);
+    private static final SimpleTeleportersReloadedRegistrate REGISTRATE = SimpleTeleportersReloaded.registrate().useCreativeTab(ItemGroupInit.DEEP_MOB_LEARNING_RELOADED);
 
     public static final BlockEntry<TeleporterBlock> ENDER_CRYSTAL = REGISTRATE.block("teleporter", TeleporterBlock::new)
-            .initialProperties(Material.STONE)
+            .initialProperties(SharedProperties::stone)
             .properties(p -> p.lightLevel((bs) -> 1).explosionResistance(1).randomTicks())
             .recipe((ctx, prov) -> {
-                ShapedRecipeBuilder.shaped(ctx.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ctx.get())
                         .define('X', Blocks.GOLD_BLOCK)
                         .define('Y', ItemInit.ENDER_CRYSTAL.get())
                         .define('Z', Blocks.QUARTZ_BLOCK)
@@ -36,12 +38,12 @@ public class BlockInit {
                 ModelFile model = provider.models().getBuilder("teleporter")
                         .renderType("cutout")
                         .transforms()
-                        .transform(ItemTransforms.TransformType.GUI).rotation(30, 45, 0).translation(0, 0, 0).scale(0.625F, 0.625F, 0.625F).end()
-                        .transform(ItemTransforms.TransformType.GROUND).rotation(0, 0, 0).translation(0, 3, 0).scale(0.25F, 0.25F, 0.25F).end()
-                        .transform(ItemTransforms.TransformType.HEAD).rotation(0, 180, 0).translation(0, 0, 0).scale(1, 1, 1).end()
-                        .transform(ItemTransforms.TransformType.FIXED).rotation(0, 180, 0).translation(0, 0, 0).scale(0.5F, 0.5F, 0.5F).end()
-                        .transform(ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND).rotation(75, 315, 0).translation(0, 2.5F, 0).scale(0.375F, 0.375F, 0.375F).end()
-                        .transform(ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND).rotation(0, 315, 0).translation(0, 0, 0).scale(0.4F, 0.4F, 0.4F).end()
+                        .transform(ItemDisplayContext.GUI).rotation(30, 45, 0).translation(0, 0, 0).scale(0.625F, 0.625F, 0.625F).end()
+                        .transform(ItemDisplayContext.GROUND).rotation(0, 0, 0).translation(0, 3, 0).scale(0.25F, 0.25F, 0.25F).end()
+                        .transform(ItemDisplayContext.HEAD).rotation(0, 180, 0).translation(0, 0, 0).scale(1, 1, 1).end()
+                        .transform(ItemDisplayContext.FIXED).rotation(0, 180, 0).translation(0, 0, 0).scale(0.5F, 0.5F, 0.5F).end()
+                        .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(75, 315, 0).translation(0, 2.5F, 0).scale(0.375F, 0.375F, 0.375F).end()
+                        .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).rotation(0, 315, 0).translation(0, 0, 0).scale(0.4F, 0.4F, 0.4F).end()
                         .end()
                         .texture("particle", provider.mcLoc("block/nether_portal"))
                         .texture("top", provider.mcLoc("block/quartz_block_top"))

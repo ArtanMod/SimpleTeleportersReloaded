@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "teleporters:ender_crystal"
+              "minecraft:ender_eye"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "teleporters:teleporter"
+        "recipe": "teleporters:ender_crystal"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,8 @@
   ],
   "rewards": {
     "recipes": [
-      "teleporters:teleporter"
+      "teleporters:ender_crystal"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
