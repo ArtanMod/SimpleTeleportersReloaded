@@ -54,3 +54,5 @@ A) Yes, you don't need to ask.
 ## License
 
 This Mod is subject to the MIT License. See LICENSE.md for details.
+
+[![bisecthosting](https://www.bisecthosting.com/partners/custom-banners/79aed160-37ce-4085-8a09-5aba3f2c541a.webp)](https://bisecthosting.com/artan-jp)
