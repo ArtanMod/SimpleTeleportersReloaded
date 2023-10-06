@@ -49,16 +49,16 @@ Simple Teleporters adds a craftable teleporter block to quickly travel your worl
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
-[[dependencies.teleporterss]]
+[[dependencies.teleporters]]
     modId="minecraft"
     mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange="[1.18.2,1.19)"
+    versionRange="[1.19.2,1.20)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.teleporters]]
     modId="artansprojectcoremod"
     mandatory=true
-    versionRange="[2.0.12,2.1.0)"
+    versionRange="[3.0.0,3.1.0)"
     ordering="AFTER"
     side="BOTH"
