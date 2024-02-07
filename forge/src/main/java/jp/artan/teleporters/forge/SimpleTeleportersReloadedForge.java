@@ -4,6 +4,9 @@ import dev.architectury.platform.forge.EventBuses;
 import jp.artan.artansprojectcoremod.forge.providers.ModBuilder;
 import jp.artan.artansprojectcoremod.setup.SetupHandler;
 import jp.artan.teleporters.SimpleTeleportersReloaded;
+import jp.artan.teleporters.forge.providers.ModBlockModelProvider;
+import net.minecraft.data.DataGenerator;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -33,6 +36,10 @@ public class SimpleTeleportersReloadedForge {
     }
 
     private static void registerProviders(GatherDataEvent event) {
+        DataGenerator generator = event.getGenerator();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
+        // Model
+        generator.addProvider(event.includeClient(), new ModBlockModelProvider(generator, SimpleTeleportersReloaded.MOD_ID, existingFileHelper));
     }
 }

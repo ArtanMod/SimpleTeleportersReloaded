@@ -1,0 +1,9 @@
+{
+  "block.teleporters.teleporter": "テレポーター",
+  "item.teleporters.ender_crystal": "エンダークリスタル",
+  "teleporters.ender_crystal.click_event": "このクリスタルは %1$s, %2$s, %3$s にリンクされています。",
+  "teleporters.ender_crystal.tooltip.guid": "Shift + 右クリックでリンクします。",
+  "teleporters.ender_crystal.tooltip.linked": "Linked: %1$s, %2$s, %3$s",
+  "teleporters.ender_crystal.tooltip.unlinked": "Unlinked",
+  "teleporters.ender_crystal.unlinked": "このクリスタルはリンクされていません。"
+}

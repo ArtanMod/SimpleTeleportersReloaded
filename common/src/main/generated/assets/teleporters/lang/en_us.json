@@ -1,0 +1,10 @@
+{
+  "block.teleporters.teleporter": "Teleporter",
+  "item.teleporters.ender_crystal": "Ender crystal",
+  "itemGroup.teleporters.simple_teleporters_reloaded": "Simpleteleporters: reloaded",
+  "teleporters.ender_crystal.click_event": "This crystal is linked at: %1$s, %2$s, %3$s.",
+  "teleporters.ender_crystal.tooltip.guid": "Sneak right click a block to link.",
+  "teleporters.ender_crystal.tooltip.linked": "Linked: %1$s, %2$s, %3$s",
+  "teleporters.ender_crystal.tooltip.unlinked": "Unlinked",
+  "teleporters.ender_crystal.unlinked": "This crystal is unlinked."
+}

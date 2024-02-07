@@ -1,1 +1,4 @@
-// 1.19.2	2024-02-07T19:47:11.8471185	Block States: teleporters
+// 1.19.2	2024-02-07T22:54:15.7692751	Block States: teleporters
+a2353f6e7d2b3895ade3b93047110bc9faabafa5 assets/teleporters/blockstates/teleporter.json
+ba7641429fe174946e852b77f9e504a4392bffda assets/teleporters/models/block/teleporter.json
+9045e294956890c91a903b4dc09c1c4b23d478ca assets/teleporters/models/item/teleporter.json

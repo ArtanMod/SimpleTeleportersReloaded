@@ -1,6 +1,11 @@
 package jp.artan.teleporters;
 
 import jp.artan.artansprojectcoremod.setup.SetupHandler;
+import jp.artan.teleporters.config.SimpleTeleportersReloadedConfig;
+import jp.artan.teleporters.init.BlockEntityInit;
+import jp.artan.teleporters.init.BlockInit;
+import jp.artan.teleporters.init.ItemGroupInit;
+import jp.artan.teleporters.init.ItemInit;
 import net.minecraft.resources.ResourceLocation;
 
 public class SimpleTeleportersReloaded {
@@ -9,7 +14,12 @@ public class SimpleTeleportersReloaded {
 
     public static void init() {
         REGISTRATE.register();
+        SimpleTeleportersReloadedConfig.init();
 
+        BlockEntityInit.register();
+        ItemGroupInit.register();
+        ItemInit.register();
+        BlockInit.register();
     }
 
     public static void initClient() {
