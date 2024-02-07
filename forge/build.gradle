@@ -1,0 +1,123 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
+
+boolean inWorkspace = findProject(':SimpleTeleportersReloaded') != null
+
+def generatedResources = inWorkspace ? project(":SimpleTeleportersReloaded:common").file("src/main/generated") : project(":common").file("src/main/generated")
+sourceSets {
+    main {
+        resources.srcDir generatedResources
+    }
+}
+loom {
+    runs {
+        named("client") {
+            setConfigName("${archives_base_name}-forge-Client")
+        }
+        named("server") {
+            setConfigName("${archives_base_name}-forge-Server")
+        }
+        data {
+            data()
+            programArgs "--all", "--mod", "teleporters"
+            programArgs "--output", generatedResources.absolutePath
+            setConfigName("${archives_base_name}-forge-Data")
+            if(inWorkspace) {
+                programArgs "--existing", project(":SimpleTeleportersReloaded:common").file("src/main/resources").absolutePath
+            } else {
+                programArgs "--existing", project(":common").file("src/main/resources").absolutePath
+            }
+        }
+    }
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentForge.extendsFrom common
+}
+
+boolean inWorkspaceBaseMod = findProject(':ArtanCoreMod') != null
+Path forgeLibsPath = findProject(':ArtanCoreMod:forge').getProjectDir().toPath().resolve("build/libs") as Path
+dependencies {
+    forge "net.minecraftforge:forge:${rootProject.forge_version}"
+    // Remove the next line if you don't want to depend on the API
+    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+
+    if(inWorkspace) {
+        common(project(path: ":SimpleTeleportersReloaded:common", configuration: "namedElements")) { transitive false }
+        shadowCommon(project(path: ":SimpleTeleportersReloaded:common", configuration: "transformProductionForge")) { transitive = false }
+    } else {
+        common(project(path: ":common", configuration: "namedElements")) { transitive false }
+        shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+    }
+    if(inWorkspaceBaseMod && Boolean.parseBoolean(is_local_artan_core)) {
+        modImplementation files(file(forgeLibsPath.resolve("Artan'sProjectCoreMOD-${artan_core_local_version}-dev-shadow.jar")))
+    } else {
+        implementation fg.deobf("curse.maven:artancore-585454:" + artan_core_version)
+    }
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("META-INF/mods.toml") {
+        expand "version": project.version
+    }
+}
+
+shadowJar {
+    exclude "fabric.mod.json"
+
+    configurations = [project.configurations.shadowCommon]
+    archiveClassifier.set("dev-shadow")
+}
+
+remapJar {
+    inputFile.set shadowJar.archiveFile
+    dependsOn shadowJar
+    archiveClassifier.set(null)
+}
+
+jar {
+    archiveClassifier.set("dev")
+}
+
+sourcesJar {
+    if(inWorkspace) {
+        def commonSources = project(":SimpleTeleportersReloaded:common").sourcesJar
+        dependsOn commonSources
+        from commonSources.archiveFile.map { zipTree(it) }
+    } else {
+        def commonSources = project(":common").sourcesJar
+        dependsOn commonSources
+        from commonSources.archiveFile.map { zipTree(it) }
+    }
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
+    }
+}
+
+publishing {
+    publications {
+        mavenForge(MavenPublication) {
+            artifactId = archives_base_name + "-" + project.name
+            from components.java
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+    }
+}

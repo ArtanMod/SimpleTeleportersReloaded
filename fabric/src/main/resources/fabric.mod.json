@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "teleporters",
+  "version": "${version}",
+  "name": "SimpleTeleportersReloaded",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "jp.artan.teleporters.fabric.SimpleTeleportersReloadedFabric"
+    ],
+    "client": [
+      "jp.artan.teleporters.fabric.SimpleTeleportersReloadedClientModFabric"
+    ]
+  },
+  "mixins": [
+    "teleporters.mixins.json",
+    "teleporters-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.3",
+    "minecraft": ">=1.19.2"
+  }
+}
