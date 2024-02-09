@@ -23,7 +23,7 @@ repositories {
 Path fabricLibsPath = findProject(':ArtanCoreMod:fabric').getProjectDir().toPath().resolve("build/libs") as Path
 dependencies {
     if(inWorkspaceBaseMod && Boolean.parseBoolean(is_local_artan_core)) {
-        implementation files(file(fabricLibsPath.resolve("Artan'sProjectCoreMOD-${artan_core_local_version}-dev-shadow.jar")))
+        implementation files(file(fabricLibsPath.resolve("Artan'sProjectCoreMOD-mc${minecraft_version}-${artan_core_local_version}-dev-shadow.jar")))
     } else {
         implementation fg.deobf("curse.maven:artancore-585454:" + artan_core_version)
     }

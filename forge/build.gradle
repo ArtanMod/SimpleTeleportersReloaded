@@ -59,7 +59,7 @@ dependencies {
         shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
     }
     if(inWorkspaceBaseMod && Boolean.parseBoolean(is_local_artan_core)) {
-        modImplementation files(file(forgeLibsPath.resolve("Artan'sProjectCoreMOD-${artan_core_local_version}-dev-shadow.jar")))
+        modImplementation files(file(forgeLibsPath.resolve("Artan'sProjectCoreMOD-mc${minecraft_version}-${artan_core_local_version}-dev-shadow.jar")))
     } else {
         implementation fg.deobf("curse.maven:artancore-585454:" + artan_core_version)
     }
