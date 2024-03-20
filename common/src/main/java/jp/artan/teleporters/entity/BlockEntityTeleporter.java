@@ -2,8 +2,8 @@ package jp.artan.teleporters.entity;
 
 import jp.artan.teleporters.block.TeleporterBlock;
 import jp.artan.teleporters.config.SimpleTeleportersReloadedConfig;
-import jp.artan.teleporters.init.BlockEntityInit;
-import jp.artan.teleporters.init.ItemInit;
+import jp.artan.teleporters.init.STRBlockEntity;
+import jp.artan.teleporters.init.STRItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -23,7 +23,7 @@ public class BlockEntityTeleporter extends BlockEntity implements Clearable {
     private final NonNullList<ItemStack> items = NonNullList.withSize(1, ItemStack.EMPTY);
 
     public BlockEntityTeleporter(BlockPos pPos, BlockState pBlockState) {
-        super(BlockEntityInit.ENTITY_TELEPORTER.get(), pPos, pBlockState);
+        super(STRBlockEntity.ENTITY_TELEPORTER.get(), pPos, pBlockState);
     }
 
     public static void teleport(Level pLevel, BlockPos pPos, BlockState pState, BlockEntityTeleporter pBlockEntity) {
@@ -59,7 +59,7 @@ public class BlockEntityTeleporter extends BlockEntity implements Clearable {
     }
 
     public boolean hasCrystal() {
-        return this.getCrystal().getItem() == ItemInit.ENDER_CRYSTAL.get();
+        return this.getCrystal().getItem() == STRItems.ENDER_CRYSTAL.get();
     }
 
     public ItemStack getCrystal() {

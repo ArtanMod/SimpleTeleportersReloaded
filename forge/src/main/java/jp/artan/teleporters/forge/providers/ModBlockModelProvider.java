@@ -1,15 +1,15 @@
 package jp.artan.teleporters.forge.providers;
 
-import jp.artan.teleporters.init.BlockInit;
+import jp.artan.artansprojectcoremod.forge.providers.AbstractBlockModelProvider;
+import jp.artan.teleporters.init.STRBlocks;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class ModBlockModelProvider extends BlockStateProvider {
+public class ModBlockModelProvider extends AbstractBlockModelProvider {
 
     public ModBlockModelProvider(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
         super(gen, modid, exFileHelper);
@@ -88,8 +88,8 @@ public class ModBlockModelProvider extends BlockStateProvider {
                 .face(Direction.UP).texture("#portal").uvs(0.0F, 0.0F, 8.0F, 8.0F).end()
                 .face(Direction.DOWN).texture("#portal").uvs(0.0F, 0.0F, 8.0F, 8.0F).end()
                 .end();
-        this.getVariantBuilder(BlockInit.TELEPORTER_BLOCK.get())
+        this.getVariantBuilder(STRBlocks.TELEPORTER_BLOCK.get())
                 .forAllStates(state -> ConfiguredModel.builder().modelFile(model).build());
-        this.simpleBlockItem(BlockInit.TELEPORTER_BLOCK.get(), model);
+        this.simpleBlockItem(STRBlocks.TELEPORTER_BLOCK.get(), model);
     }
 }

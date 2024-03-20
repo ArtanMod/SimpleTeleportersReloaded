@@ -1,7 +1,7 @@
 package jp.artan.teleporters.block;
 
 import jp.artan.teleporters.entity.BlockEntityTeleporter;
-import jp.artan.teleporters.init.BlockEntityInit;
+import jp.artan.teleporters.init.STRBlockEntity;
 import jp.artan.teleporters.item.TeleportCrystal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -98,7 +98,7 @@ public class TeleporterBlock extends BaseEntityBlock {
         if(pLevel.isClientSide) {
             return null;
         }
-        return createTickerHelper(pBlockEntityType, BlockEntityInit.ENTITY_TELEPORTER.get(), BlockEntityTeleporter::teleport);
+        return createTickerHelper(pBlockEntityType, STRBlockEntity.ENTITY_TELEPORTER.get(), BlockEntityTeleporter::teleport);
     }
 
     @Override

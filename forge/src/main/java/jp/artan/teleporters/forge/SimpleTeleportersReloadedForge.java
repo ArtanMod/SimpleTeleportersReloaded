@@ -1,10 +1,8 @@
 package jp.artan.teleporters.forge;
 
 import dev.architectury.platform.forge.EventBuses;
-import jp.artan.artansprojectcoremod.forge.providers.ModBuilder;
-import jp.artan.artansprojectcoremod.setup.SetupHandler;
 import jp.artan.teleporters.SimpleTeleportersReloaded;
-import jp.artan.teleporters.forge.providers.ModBlockModelProvider;
+import jp.artan.teleporters.forge.providers.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -21,14 +19,12 @@ public class SimpleTeleportersReloadedForge {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         EventBuses.registerModEventBus(SimpleTeleportersReloaded.MOD_ID, eventBus);
         SimpleTeleportersReloaded.init();
-        ModBuilder.register(eventBus, SimpleTeleportersReloaded.REGISTRATE);
         eventBus.addListener(SimpleTeleportersReloadedForge::registerProviders);
         eventBus.addListener(this::commonSetup);
         eventBus.addListener(this::onClientSetup);
     }
 
     public void commonSetup(final FMLCommonSetupEvent event) {
-        SetupHandler.commonSetup(SimpleTeleportersReloaded.REGISTRATE);
     }
 
     public void onClientSetup(FMLClientSetupEvent event) {
@@ -41,5 +37,17 @@ public class SimpleTeleportersReloadedForge {
 
         // Model
         generator.addProvider(event.includeClient(), new ModBlockModelProvider(generator, SimpleTeleportersReloaded.MOD_ID, existingFileHelper));
+        generator.addProvider(event.includeClient(), new ModItemModelProvider(generator, SimpleTeleportersReloaded.MOD_ID, existingFileHelper));
+
+        // LootTable
+        generator.addProvider(event.includeServer(), new ModLootTableProvider(generator, SimpleTeleportersReloaded.MOD_ID));
+
+        // Lang
+        generator.addProvider(event.includeClient(), new ModUDLanguageProvider(generator, SimpleTeleportersReloaded.MOD_ID));
+        generator.addProvider(event.includeClient(), new ModUSLanguageProvider(generator, SimpleTeleportersReloaded.MOD_ID));
+        generator.addProvider(event.includeClient(), new ModJPLanguageProvider(generator, SimpleTeleportersReloaded.MOD_ID));
+
+        // Recipe
+        generator.addProvider(event.includeClient(), new ModRecipeProvider(generator));
     }
 }

@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "teleporters:ender_crystal"
+        "recipe": "minecraft:ender_crystal_smelting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "teleporters:ender_crystal"
+      "minecraft:ender_crystal_smelting"
     ]
   }
 }
