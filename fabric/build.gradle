@@ -108,7 +108,7 @@ components.java {
 publishing {
     publications {
         mavenFabric(MavenPublication) {
-            artifactId = archives_base_name + "-" + project.name
+            artifactId = mod_id + "-" + project.name
             from components.java
         }
     }

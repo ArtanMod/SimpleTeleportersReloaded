@@ -115,7 +115,7 @@ components.java {
 publishing {
     publications {
         mavenForge(MavenPublication) {
-            artifactId = archives_base_name + "-" + project.name
+            artifactId = mod_id + "-" + project.name
             from components.java
         }
     }
