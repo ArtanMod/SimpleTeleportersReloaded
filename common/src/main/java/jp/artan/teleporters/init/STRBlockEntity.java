@@ -6,11 +6,11 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import jp.artan.teleporters.SimpleTeleportersReloaded;
 import jp.artan.teleporters.client.render.TeleporterRenderer;
 import jp.artan.teleporters.entity.BlockEntityTeleporter;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class STRBlockEntity {
-    private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(SimpleTeleportersReloaded.MOD_ID, Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+    private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(SimpleTeleportersReloaded.MOD_ID, Registries.BLOCK_ENTITY_TYPE);
 
     public static void register() {
         BLOCK_ENTITIES.register();

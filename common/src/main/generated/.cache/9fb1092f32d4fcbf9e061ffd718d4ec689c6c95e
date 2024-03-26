@@ -1,5 +1,5 @@
-// 1.19.2	2024-03-20T20:15:17.0643402	Recipes
-9b260b95d98071e36f83d4f525b7e89b6a4b8669 data/minecraft/advancements/recipes/teleporters.simple_teleporters_reloaded/ender_crystal_smelting.json
-9245982aeda92e741bf7087d4185e9fee4784e2c data/minecraft/recipes/ender_crystal_smelting.json
-67c6d16f02f800b87f051cddc3ab7e62751c57f2 data/teleporters/advancements/recipes/teleporters.simple_teleporters_reloaded/teleporter.json
-c48fd625fa57342a57ac1f6001eebfbcfb61e604 data/teleporters/recipes/teleporter.json
+// 1.20.1	2024-03-26T22:57:12.1853914	Recipes
+2283d9474a667c8e67e2e628123457c18b7f04e0 data/minecraft/advancements/recipes/misc/ender_crystal_smelting.json
+afafeaaa158910654992f46ad2e00202e73552bf data/minecraft/recipes/ender_crystal_smelting.json
+94ee5b59754f49142dc7ece9ada9bf6dc50ddb30 data/teleporters/advancements/recipes/misc/teleporter.json
+fe62f24948ae18833dba3ed8ceb1def4b08514c1 data/teleporters/recipes/teleporter.json

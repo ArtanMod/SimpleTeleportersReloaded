@@ -3,11 +3,11 @@ package jp.artan.teleporters.forge.providers;
 import jp.artan.artansprojectcoremod.forge.providers.AbstractJPLanguageProvider;
 import jp.artan.teleporters.init.STRBlocks;
 import jp.artan.teleporters.init.STRItems;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 
 public class ModJPLanguageProvider extends AbstractJPLanguageProvider {
-    public ModJPLanguageProvider(DataGenerator gen, String modid) {
-        super(gen, modid);
+    public ModJPLanguageProvider(PackOutput output, String modid) {
+        super(output, modid);
     }
 
     @Override

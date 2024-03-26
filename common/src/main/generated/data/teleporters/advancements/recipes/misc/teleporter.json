@@ -30,5 +30,6 @@
     "recipes": [
       "teleporters:teleporter"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -3,12 +3,12 @@ package jp.artan.teleporters.forge.providers;
 import jp.artan.artansprojectcoremod.forge.providers.AbstractUDLanguageProvider;
 import jp.artan.artansprojectcoremod.utils.lang.LangUtils;
 import jp.artan.teleporters.init.STRCreativeTab;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 
 public class ModUDLanguageProvider extends AbstractUDLanguageProvider {
-    public ModUDLanguageProvider(DataGenerator gen, String modid) {
-        super(gen, modid);
+    public ModUDLanguageProvider(PackOutput output, String modid) {
+        super(output, modid);
     }
 
     @Override
@@ -16,7 +16,8 @@ public class ModUDLanguageProvider extends AbstractUDLanguageProvider {
         super.addTranslations();
 
         // ItemGroup
-        String id = ((TranslatableContents)STRCreativeTab.SIMPLE_TELEPORTERS_RELOADED.getDisplayName().getContents()).getKey();
+        ResourceLocation creativeTabRL = STRCreativeTab.SIMPLE_TELEPORTERS_RELOADED.getId();
+        String id = "itemGroup." + creativeTabRL.getNamespace() + "." + creativeTabRL.getPath();
         this.add(id, LangUtils.toUpsideDownEnglish("SimpleTeleporters: Reloaded"));
 
         // ToolTip

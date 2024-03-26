@@ -2,17 +2,17 @@ package jp.artan.teleporters.forge.providers;
 
 import jp.artan.artansprojectcoremod.forge.providers.AbstractBlockModelProvider;
 import jp.artan.teleporters.init.STRBlocks;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.Direction;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModBlockModelProvider extends AbstractBlockModelProvider {
 
-    public ModBlockModelProvider(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
-        super(gen, modid, exFileHelper);
+    public ModBlockModelProvider(PackOutput output, String modid, ExistingFileHelper exFileHelper) {
+        super(output, modid, exFileHelper);
     }
 
     @Override
@@ -20,12 +20,12 @@ public class ModBlockModelProvider extends AbstractBlockModelProvider {
         ModelFile model = this.models().getBuilder("teleporter")
                 .renderType("cutout")
                 .transforms()
-                .transform(ItemTransforms.TransformType.GUI).rotation(30, 45, 0).translation(0, 0, 0).scale(0.625F, 0.625F, 0.625F).end()
-                .transform(ItemTransforms.TransformType.GROUND).rotation(0, 0, 0).translation(0, 3, 0).scale(0.25F, 0.25F, 0.25F).end()
-                .transform(ItemTransforms.TransformType.HEAD).rotation(0, 180, 0).translation(0, 0, 0).scale(1, 1, 1).end()
-                .transform(ItemTransforms.TransformType.FIXED).rotation(0, 180, 0).translation(0, 0, 0).scale(0.5F, 0.5F, 0.5F).end()
-                .transform(ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND).rotation(75, 315, 0).translation(0, 2.5F, 0).scale(0.375F, 0.375F, 0.375F).end()
-                .transform(ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND).rotation(0, 315, 0).translation(0, 0, 0).scale(0.4F, 0.4F, 0.4F).end()
+                .transform(ItemDisplayContext.GUI).rotation(30, 45, 0).translation(0, 0, 0).scale(0.625F, 0.625F, 0.625F).end()
+                .transform(ItemDisplayContext.GROUND).rotation(0, 0, 0).translation(0, 3, 0).scale(0.25F, 0.25F, 0.25F).end()
+                .transform(ItemDisplayContext.HEAD).rotation(0, 180, 0).translation(0, 0, 0).scale(1, 1, 1).end()
+                .transform(ItemDisplayContext.FIXED).rotation(0, 180, 0).translation(0, 0, 0).scale(0.5F, 0.5F, 0.5F).end()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(75, 315, 0).translation(0, 2.5F, 0).scale(0.375F, 0.375F, 0.375F).end()
+                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).rotation(0, 315, 0).translation(0, 0, 0).scale(0.4F, 0.4F, 0.4F).end()
                 .end()
                 .texture("particle", this.mcLoc("block/nether_portal"))
                 .texture("top", this.mcLoc("block/quartz_block_top"))

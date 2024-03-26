@@ -2,13 +2,13 @@ package jp.artan.teleporters.forge.providers;
 
 import jp.artan.artansprojectcoremod.forge.providers.AbstractLootTableProvider;
 import jp.artan.teleporters.init.STRBlocks;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 
 import java.util.function.Function;
 
 public class ModLootTableProvider extends AbstractLootTableProvider {
-    public ModLootTableProvider(DataGenerator arg, String modId) {
-        super(arg, modId);
+    public ModLootTableProvider(PackOutput output, String modId) {
+        super(output, modId, () -> new BlockLootTable(modId));
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ModLootTableProvider extends AbstractLootTableProvider {
         }
 
         @Override
-        protected void addTables() {
+        protected void generate() {
             this.dropSelf(STRBlocks.TELEPORTER_BLOCK.get());
         }
     }
