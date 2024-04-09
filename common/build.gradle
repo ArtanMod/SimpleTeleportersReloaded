@@ -10,20 +10,17 @@ architectury {
     common("fabric", "forge")
 }
 
-boolean inWorkspaceBaseMod = findProject(':ArtanCoreMod') != null
 repositories {
-    if(inWorkspaceBaseMod) {
-        flatDir {
-            dirs findProject(':ArtanCoreMod:fabric').getProjectDir().toPath().resolve("build/libs")
-            dirs findProject(':ArtanCoreMod:forge').getProjectDir().toPath().resolve("build/libs")
-        }
+    flatDir {
+        dirs findProject(':common').getProjectDir().toPath().resolve("../../ArtanCoreMod/fabric/build/libs")
+        dirs findProject(':common').getProjectDir().toPath().resolve("../../ArtanCoreMod/forge/build/libs")
     }
 }
 
-Path fabricLibsPath = findProject(':ArtanCoreMod:fabric').getProjectDir().toPath().resolve("build/libs") as Path
 dependencies {
-    if(inWorkspaceBaseMod && Boolean.parseBoolean(is_local_artan_core)) {
-        implementation files(file(fabricLibsPath.resolve("Artan'sProjectCoreMOD-mc${minecraft_version}-${artan_core_local_version}-dev-shadow.jar")))
+    if(Boolean.parseBoolean(is_local_artan_core)) {
+        implementation files(file(findProject(':common').getProjectDir().toPath().resolve("../../ArtanCoreMod/fabric/build/libs")
+                .resolve("Artan'sProjectCoreMOD-mc${minecraft_version}-${artan_core_local_version}-dev-shadow.jar")))
     } else {
         implementation fg.deobf("curse.maven:artancore-585454:" + artan_core_version)
     }
