@@ -1,6 +1,7 @@
 plugins {
     id "architectury-plugin"
     id "dev.architectury.loom" apply false
+    id 'maven-publish'
 }
 
 architectury {
@@ -36,7 +37,7 @@ allprojects {
 
     archivesBaseName = archives_base_name + "-mc" + minecraft_version
     version = mod_version
-    group = rootProject.maven_group
+    group = maven_group
 
     repositories {
         // Add repositories to retrieve artifacts from in here.
