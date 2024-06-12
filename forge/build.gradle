@@ -5,7 +5,7 @@ architectury {
     platformSetupLoomIde()
     forge()
 }
-
+archivesBaseName = archives_base_name + "-forge-mc" + minecraft_version
 
 sourceSets {
     main {
@@ -46,10 +46,10 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
     if(Boolean.parseBoolean(is_local_artan_core)) {
-        implementation files(file(findProject(':common').getProjectDir().toPath().resolve("../../ArtanCoreMod/forge/build/libs")
-                .resolve("Artan'sProjectCoreMOD-mc${minecraft_version}-${artan_core_local_version}-dev-shadow.jar")))
+        modImplementation files(file(findProject(':common').getProjectDir().toPath().resolve("../../ArtanCoreMod/forge/build/libs")
+                .resolve("Artan'sProjectCoreMOD-forge-mc${minecraft_version}-${artan_core_local_version}-dev-shadow.jar")))
     } else {
-        implementation fg.deobf("curse.maven:artancore-585454:" + artan_core_version)
+        modImplementation "curse.maven:artancore-585454:" + artan_core_forge_version
     }
 
     // JEI
