@@ -6,7 +6,7 @@ architectury {
     platformSetupLoomIde()
     fabric()
 }
-
+archivesBaseName = archives_base_name + "-fabric-mc" + minecraft_version
 
 sourceSets {
     main {
@@ -42,10 +42,10 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
     if(Boolean.parseBoolean(is_local_artan_core)) {
-        implementation files(file(findProject(':common').getProjectDir().toPath().resolve("../../ArtanCoreMod/fabric/build/libs")
-                .resolve("Artan'sProjectCoreMOD-mc${minecraft_version}-${artan_core_local_version}-dev-shadow.jar")))
+        modImplementation files(file(findProject(':common').getProjectDir().toPath().resolve("../../ArtanCoreMod/fabric/build/libs")
+                .resolve("Artan'sProjectCoreMOD-fabric-mc${minecraft_version}-${artan_core_local_version}-dev-shadow.jar")))
     } else {
-        implementation fg.deobf("curse.maven:artancore-585454:" + artan_core_version)
+        modImplementation "curse.maven:artancore-585454:" + artan_core_fabric_version
     }
 
     // JEI
