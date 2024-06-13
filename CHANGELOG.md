@@ -1,5 +1,12 @@
 # ChangeLog
 
+## [2.0.0] - 2024/6/13
+
+- Registry APIからArchitectury APIへの変更
+- ForgeとFabricの両対応
+  - Fabric 1.19.2、1.20.1のサポート開始
+- 前提MOD v4対応
+
 ## [1.1.0] - 2023/10/19
 
 - 前提MOD v3対応
