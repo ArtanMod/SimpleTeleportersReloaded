@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.0.1] - 2024/08/11
+
+- Fabricでサーバで利用できないバグを修正
+
 ## [2.0.0] - 2024/6/13
 
 - Registry APIからArchitectury APIへの変更

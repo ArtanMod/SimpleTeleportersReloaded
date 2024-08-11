@@ -7,6 +7,5 @@ public class SimpleTeleportersReloadedFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         SimpleTeleportersReloaded.init();
-        SimpleTeleportersReloaded.initClient();
     }
 }
