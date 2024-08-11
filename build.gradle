@@ -43,10 +43,6 @@ allprojects {
         maven { url "https://cursemaven.com" }
     }
 
-    dependencies {
-        implementation "com.electronwill.night-config:toml:3.6.3"
-    }
-
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
         options.release.set(17)
