@@ -7,8 +7,8 @@ services:
       - 25575:25575
     environment:
       TYPE: FABRIC
-      VERSION: 1.19.2
-      FABRIC_LOADER_VERSION: 0.15.3
+      VERSION: 1.20.1
+      FABRIC_LOADER_VERSION: 0.15.6
       # FABRIC_LAUNCHER_VERSION: 0.77.0
       EULA: "TRUE"
       ONLINE_MODE: false

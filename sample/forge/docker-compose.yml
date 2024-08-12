@@ -7,8 +7,8 @@ services:
       - 25575:25575
     environment:
       TYPE: FORGE 
-      VERSION: 1.19.2
-      FORGE_VERSION: 43.3.7
+      VERSION: 1.20.1
+      FORGE_VERSION: 47.2.20
       EULA: "TRUE"
       ONLINE_MODE: false
       MAX_PLAYERS: 1
