@@ -1,30 +1,32 @@
 package jp.artan.teleporters.init;
 
-import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.RegistrySupplier;
 import jp.artan.teleporters.SimpleTeleportersReloaded;
 import jp.artan.teleporters.block.TeleporterBlock;
-import net.minecraft.core.Registry;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.Blocks;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class STRBlocks {
-    private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(SimpleTeleportersReloaded.MOD_ID, Registry.BLOCK_REGISTRY);
-    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(SimpleTeleportersReloaded.MOD_ID, Registry.ITEM_REGISTRY);
+    private static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(SimpleTeleportersReloaded.MOD_ID);
+    private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(SimpleTeleportersReloaded.MOD_ID);
 
-    public static void register() {
-        BLOCKS.register();
-        ITEMS.register();
+    public static void register(IEventBus modEventBus) {
+        BLOCKS.register(modEventBus);
+        ITEMS.register(modEventBus);
     }
-    public static final Supplier<TeleporterBlock> TELEPORTER_BLOCK = register("teleporter", () -> new TeleporterBlock(Block.Properties.of(Material.STONE).lightLevel((bs) -> 1).explosionResistance(1).randomTicks()));
+    public static final Supplier<TeleporterBlock> TELEPORTER_BLOCK = register("teleporter", id -> new TeleporterBlock(Block.Properties.ofFullCopy(Blocks.STONE).setId(id).lightLevel((bs) -> 1).explosionResistance(1).randomTicks()));
 
-    private static <T extends Block> RegistrySupplier<T> register(String name, Supplier<T> block) {
-        RegistrySupplier<T> registeredBlock = BLOCKS.register(name, block);
-        ITEMS.register(name, () -> new BlockItem(registeredBlock.get(), new Item.Properties().tab(STRCreativeTab.SIMPLE_TELEPORTERS_RELOADED)));
+    private static <T extends Block> DeferredBlock<T> register(String name, Function<ResourceKey<Block>, T> block) {
+        ResourceKey<Block> id = ResourceKey.create(Registries.BLOCK, SimpleTeleportersReloaded.getResource(name));
+        DeferredBlock<T> registeredBlock = BLOCKS.register(name, () -> block.apply(id));
+        ITEMS.registerSimpleBlockItem(registeredBlock);
         return registeredBlock;
     }
 }

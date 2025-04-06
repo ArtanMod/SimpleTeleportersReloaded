@@ -39,7 +39,7 @@ public class BlockEntityTeleporter extends BlockEntity implements Clearable {
                 CompoundTag tag = itemStack.getTag();
                 if(tag != null && tag.getString("dim").equals(pLevel.dimension().location().toString())) {
                     float pYaw = player.getRotationVector().y;
-                    if(SimpleTeleportersReloadedConfig.CONFIG_USE_DIRECTION.get()) {
+                    if(SimpleTeleportersReloadedConfig.teleportation) {
                         pYaw = tag.getFloat("direction");
                     }
                     player.teleportTo(serverLevel, tag.getInt("x") + 0.5F, tag.getInt("y") + 1, tag.getInt("z") + 0.5F, pYaw, player.getVoicePitch());

@@ -1,28 +1,31 @@
 package jp.artan.teleporters.config;
 
-import com.electronwill.nightconfig.core.file.CommentedFileConfig;
-import jp.artan.artansprojectcoremod.config.ModConfigs;
+import jp.artan.teleporters.SimpleTeleportersReloaded;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
-public class SimpleTeleportersReloadedConfig extends ModConfigs {
+@EventBusSubscriber(modid = SimpleTeleportersReloaded.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+public class SimpleTeleportersReloadedConfig {
 
-    private static final SimpleTeleportersReloadedConfig configs = new SimpleTeleportersReloadedConfig();
+    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    private static final ModConfigSpec.IntValue CONFIG_PARTICLE_AMT_BLOCK = BUILDER
+            .comment("The amount of portal particles that will come out of the teleporter every display tick.")
+            .defineInRange("particleAmtBlock", 5, 0, Integer.MAX_VALUE);
+    private static final ModConfigSpec.BooleanValue CONFIG_USE_DIRECTION = BUILDER
+            .comment("After teleporting, the player will face the direction they were facing when linking the crystal.")
+            .define("Teleportation", true);
 
-    public static ConfigEntry<Integer> CONFIG_PARTICLE_AMT_BLOCK;
-    public static ConfigEntry<Boolean> CONFIG_USE_DIRECTION;
+    static final ModConfigSpec SPEC = BUILDER.build();
 
-    private SimpleTeleportersReloadedConfig() {
-        super("simple-teleporters-reloaded.toml");
-    }
+    public static int particleAmtBlock;
+    public static boolean teleportation;
 
-    @Override
-    protected void read(CommentedFileConfig commentedFileConfig) {
-        CONFIG_PARTICLE_AMT_BLOCK = new ConfigEntry<>("particleAmtBlock", 5, commentedFileConfig)
-                .comment("The amount of portal particles that will come out of the teleporter every display tick.");
-        CONFIG_USE_DIRECTION = new ConfigEntry<>("Teleportation", true, commentedFileConfig)
-                .comment("After teleporting, the player will face the direction they were facing when linking the crystal.");
-    }
-
-    public static void init() {
-        configs.read();
+    @SubscribeEvent
+    static void onLoad(final ModConfigEvent event)
+    {
+        particleAmtBlock = CONFIG_PARTICLE_AMT_BLOCK.get();
+        teleportation = CONFIG_USE_DIRECTION.get();
     }
 }

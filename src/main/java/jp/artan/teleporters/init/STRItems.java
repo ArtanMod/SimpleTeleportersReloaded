@@ -1,19 +1,25 @@
 package jp.artan.teleporters.init;
 
-import dev.architectury.registry.registries.DeferredRegister;
 import jp.artan.teleporters.SimpleTeleportersReloaded;
 import jp.artan.teleporters.item.TeleportCrystal;
-import net.minecraft.core.Registry;
 import net.minecraft.world.item.Item;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class STRItems {
-    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(SimpleTeleportersReloaded.MOD_ID, Registry.ITEM_REGISTRY);
+    private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(SimpleTeleportersReloaded.MOD_ID);
 
-    public static void register() {
-        ITEMS.register();
+    public static void register(IEventBus modEventBus) {
+        ITEMS.register(modEventBus);
     }
 
-    public static final Supplier<TeleportCrystal> ENDER_CRYSTAL = ITEMS.register("ender_crystal", () -> new TeleportCrystal(new Item.Properties().tab(STRCreativeTab.SIMPLE_TELEPORTERS_RELOADED)));
+    public static final Supplier<TeleportCrystal> ENDER_CRYSTAL = register("ender_crystal", TeleportCrystal::new, new Item.Properties());
+
+    private static <T extends Item> DeferredItem<T> register(String name, Function<Item.Properties, T> item, Item.Properties properties) {
+        return ITEMS.registerItem(name, item, properties);
+    }
 }

@@ -1,25 +1,21 @@
 package jp.artan.teleporters.init;
 
-import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
-import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.RegistrySupplier;
 import jp.artan.teleporters.SimpleTeleportersReloaded;
-import jp.artan.teleporters.client.render.TeleporterRenderer;
 import jp.artan.teleporters.entity.BlockEntityTeleporter;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
 
 public class STRBlockEntity {
-    private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(SimpleTeleportersReloaded.MOD_ID, Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+    private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, SimpleTeleportersReloaded.MOD_ID);
 
-    public static void register() {
-        BLOCK_ENTITIES.register();
+    public static void register(IEventBus modEventBus) {
+        BLOCK_ENTITIES.register(modEventBus);
     }
-    public static final RegistrySupplier<BlockEntityType<BlockEntityTeleporter>> ENTITY_TELEPORTER = BLOCK_ENTITIES.register("teleporter",
-            () -> BlockEntityType.Builder.of(BlockEntityTeleporter::new, STRBlocks.TELEPORTER_BLOCK.get()).build(null));
 
-    public static void initClient() {
-        BlockEntityRendererRegistry.register(ENTITY_TELEPORTER.get(), TeleporterRenderer::new);
-
-    }
+    public static final Supplier<BlockEntityType<BlockEntityTeleporter>> ENTITY_TELEPORTER = BLOCK_ENTITIES.register("teleporter",
+            () -> new BlockEntityType<>(BlockEntityTeleporter::new, STRBlocks.TELEPORTER_BLOCK.get()));
 }
